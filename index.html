@@ -1,0 +1,167 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="UTF-8">
+		<title>Code Contas</title>
+
+		<!--Import Google Icon Font-->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<style type="text/css">
+			.pago{
+				background-color: green;
+			}
+
+			.nao-pago{
+				background-color: red;
+			}
+
+			.red{
+				color: red;
+			}
+
+			.green{
+				color: green;
+			}
+
+			.gray{
+				color: gray;
+			}
+		</style>
+	</head>
+
+	<body id="app">
+
+		<div>
+			<div>
+				<div class="navbar-fixed">
+					<nav>
+						<div class="nav-wrapper container">
+							<div class="row">
+								<!--<div class="col s12">-->
+								<a href="#" class="brand-logo right">Gomed</a>
+								<ul id="nav-mobile" class="left">
+									<li v-for="o in menu">
+										<a href="#" @click.prevent="showView(o.id)">{{o.name}}</a>
+									</li>
+								</ul>
+								<!--</div>-->
+							</div>
+						</div>
+					</nav>
+				</div>
+
+				<h1>{{ title }}</h1>
+				<h2 :class="{'gray' : status === false}">{{ status | generalStatus }}</h2>
+
+				<div class="row">
+					<div class="col s4 offset-s9">
+						<h3>teste Lucas</h3>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+
+				<div class="row">
+					<div class="col s6">
+						Laravel com Vuejs
+					</div>
+					<div class="col s6">
+						by Lucas Rodrigues
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div v-if="activedView == 0">
+
+						<table border="1" cellpadding="10">
+
+							<thead>
+
+								<tr>
+									<th>#</th>
+									<th>Vencimento</th>
+									<th>Nome</th>
+									<th>Valor</th>
+									<th>Paga?</th>
+									<th>Acões</th>
+								</tr>
+
+							</thead>
+
+							<tbody>
+								<tr v-for="(index,o) in bills">
+
+									<td>{{ index + 1 }}</td>
+									<td>{{ o.date_due }}</td>
+									<td>{{ o.name }}</td>
+									<td>{{ o.value | currency 'R$' 2 }}</td>
+									<td :class="{'pago' : o.done, 'nao-pago' : !o.done}">
+										<input type="checkbox" :checked="o.done" v-model="o.done" />
+									</td>
+									<td>
+										<a href="#" @click.prevent="loadBill(o)">Editar</a> |
+										<a href="#" @click.prevent="deleteBill(o)">Excluir</a>
+									</td>
+									<!--<td> <input type="checkbox" id="paga" name="paga" onclick="soma()"></td>-->
+
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+
+					<div v-if="activedView == 1">
+
+						<form name="frmIncConta" :submit.prevent="submit">
+
+							<label>Vencimento da Conta</label>
+							<input type="text" v-model="bill.date_due" />
+
+							<br/><br/>
+
+							<label>Nome da Conta</label>
+							<select v-model="bill.name">
+								<option v-for="o in names" :value="o">{{ o }}</option>
+							</select>
+
+							<br/><br/>
+
+							<label>Valor da Conta</label>
+							<input type="text" v-model="bill.value"/>
+
+							<br/><br/>
+
+							<label>Pago?</label>
+							<input type="checkbox" v-model="bill.done"/>
+
+							<br/><br/>
+
+							<input type="submit" value="Adicionar conta"/>
+
+						</form>
+
+					</div>
+
+					<p>{{ Total }}</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+		<script type="text/javascript" src="node_modules/vue/dist/vue.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>
