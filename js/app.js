@@ -146,3 +146,7 @@
         console.log('velhoValor: ' + velhoValor);
         console.log('novoValor: ' + novoValor);
     });
+
+    $(document).ready(function () {
+        $('.button-collapse').sideNav();
+    });

@@ -43,8 +43,19 @@
 						<div class="nav-wrapper container">
 							<div class="row">
 								<!--<div class="col s12">-->
-								<a href="#" class="brand-logo right white-text text-lighten-3">Gomed</a><!--text-darken-1 -->								
-								<ul id="nav-mobile" class="left">
+								<a href="#" class="brand-logo right white-text text-lighten-3">Gomed</a><!--text-darken-1 -->
+
+								<a href="#" data-activates="nav-mobile" class="button-collapse">
+									<i class="material-icons">menu</i>
+								</a><!--text-darken-1 -->
+
+								<ul class="left hide-on-med-and-down">
+									<li v-for="o in menu">
+										<a href="#" @click.prevent="showView(o.id)">{{o.name}}</a>
+									</li>
+								</ul>
+
+								<ul id="nav-mobile" class="side-nav">
 									<li v-for="o in menu">
 										<a href="#" @click.prevent="showView(o.id)">{{o.name}}</a>
 									</li>
@@ -59,7 +70,7 @@
 				<h2 :class="{'gray' : status === false}">{{ status | generalStatus }}</h2>
 
 				<div class="row">
-					<div class="col s4 offset-s9 z-depth-5">
+					<div class="col s4 offset-s9 z-depth-4 hide-on-med-and-down">
 						<h3>teste Lucas</h3>
 					</div>
 				</div>
@@ -85,7 +96,7 @@
 							<thead>
 
 								<tr>
-									<th>#</th>
+									<th>ID</th>
 									<th>Vencimento</th>
 									<th>Nome</th>
 									<th>Valor</th>
