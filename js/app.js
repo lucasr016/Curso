@@ -11,17 +11,13 @@
 
     Vue.filter('generalStatus', function (value) {
 
-        console.log(value);
         if(value === false){
-            console.log('aqui');
             return 'Nenhuma conta cadastrada.';
         }
 
         if(!value){
-            console.log('aqui2');
             return 'Nenhuma conta a pagar.';
         }else{
-            console.log('aqui3');
             return 'Existe(m) '+ value + 'conta(s) a ser(em) paga(s).';
         }
     });
