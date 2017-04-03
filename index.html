@@ -131,38 +131,47 @@
 
 					<div v-if="activedView == 1">
 
-						<div class="row">
-							<form name="frmIncConta" :submit.prevent="submit">
+						<div class="container">
 
-								<div class="row">
-									<label>Vencimento da Conta</label>
-									<input type="text" v-model="bill.date_due" />
-								</div>
+							<div class="row">
 
-								<div class="row">
+								<form name="frmIncConta" :submit.prevent="submit">
 
-									<div class="input-field col s8">
-										<label>Nome da Conta</label>
-										<select v-model="bill.name" id="name">
-											<option v-for="o in names" :value="o">{{ o }}</option>
-										</select>
+									<div class="row">
+										<div class="input-field col s6">
+											<label>Vencimento da Conta</label>
+											<input type="text" v-model="bill.date_due"/>
+										</div>
+
+										<div class="input-field col s6">
+											<label>Valor da Conta</label>
+											<input type="text" v-model="bill.value"/>
+										</div>
 									</div>
 
-									<div class="input-field col s4">
-										<label>Valor da Conta</label>
-										<input type="text" v-model="bill.value"/>
+									<div class="row">
+										<div class="input-field col s12">
+											<label>Nome da Conta</label>
+											<select v-model="bill.name" id="name">
+												<option v-for="o in names" :value="o">{{ o }}</option>
+											</select>
+										</div>
 									</div>
-								</div>
 
-								<div class="row">
-									<label>Pago?</label>
-									<input type="checkbox" v-model="bill.done"/>
-								</div>
+									<div class="row">
+										<div>
+											<label>Pago?</label>
+											<input type="checkbox" v-model="bill.done"/>
+										</div>
+									</div>
 
-								<input type="submit" value="Adicionar conta"/>
+									<input type="submit" value="Adicionar conta"/>
+								</form>
 
-							</form>
+							</div>
+
 						</div>
+
 					</div>
 					<div class="row">
 						<p>{{ Total }}</p>
