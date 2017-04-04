@@ -145,4 +145,5 @@
 
     $(document).ready(function () {
         $('.button-collapse').sideNav();
+        $('#interminate').material_select();
     });

@@ -11,27 +11,6 @@
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-		<style type="text/css">
-			.pago{
-				background-color: green;
-			}
-
-			.nao-pago{
-				background-color: red;
-			}
-
-			.red{
-				color: red;
-			}
-
-			.green{
-				color: green;
-			}
-
-			.gray{
-				color: gray;
-			}
-		</style>
 	</head>
 
 	<body id="app">
@@ -66,14 +45,32 @@
 					</nav>
 				</div>
 
-				<h1>{{ title }}</h1>
-				<h2 :class="{'gray' : status === false}">{{ status | generalStatus }}</h2>
+				<div class="section">
+					<div class="container">
+						<h4>{{ title }}</h4>
 
-				<div class="row">
-					<div class="col s4 offset-s9 z-depth-4 hide-on-med-and-down">
-						<h3>teste Lucas</h3>
+						<div class="row">
+							<div class="col s6">
+								<div class="card z-depth-2">
+									<div class="card-content">
+										<p class="card-title"></p>
+										<h3></h3>
+									</div>
+								</div>
+							</div>
+							<div class="col s6"></div>
+						</div>
+
+						<h2 :class="{'gray' : status === false}">{{ status | generalStatus }}</h2>
+
+						<div class="row">
+							<div class="col s5 offset-s7">
+								<h3>R$ 3404,50</h3>
+							</div>
+						</div>
 					</div>
 				</div>
+
 			</div>
 
 			<div class="container">
@@ -150,19 +147,18 @@
 									</div>
 
 									<div class="row">
-										<div class="input-field col s12">
-											<label>Nome da Conta</label>
-											<select v-model="bill.name" id="name">
+										<div class="col s12">
+											<label>Nome da Conta:</label>
+											<select v-model="bill.name" id="name" class="browser-default">
+												<option value="" disabled selected>Selecione uma opção</option>
 												<option v-for="o in names" :value="o">{{ o }}</option>
 											</select>
 										</div>
 									</div>
 
 									<div class="row">
-										<div>
-											<label>Pago?</label>
-											<input type="checkbox" v-model="bill.done"/>
-										</div>
+										<input type="checkbox" v-model="bill.done" id="chkPago"/>
+										<label for="chkPago">Pago?</label>
 									</div>
 
 									<input type="submit" value="Adicionar conta"/>
