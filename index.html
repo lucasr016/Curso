@@ -3,10 +3,8 @@
 		<meta charset="UTF-8">
 		<title>Code Contas</title>
 
-		<!--Import Google Icon Font-->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/app.css"  media="screen,projection"/>
 
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -18,7 +16,8 @@
 		<div>
 			<div>
 				<div class="navbar-fixed"> 
-					<nav class="blue"> <!--lighten-1 até 5 e darken-1 até 4-->
+					<!--<nav class="blue">--> <!--lighten-1 até 5 e darken-1 até 4-->
+					<nav>
 						<div class="nav-wrapper container">
 							<div class="row">
 								<!--<div class="col s12">-->
@@ -44,29 +43,48 @@
 						</div>
 					</nav>
 				</div>
+				<button class="btn">Teste</button>
+				<p class="my-custom-green">teste lucas</p>
+
+				<a id="btnModal" class="btn waves-effect modal-action" href="#meuModal">Teste modal</a>
+				<div id="meuModal" class="modal">
+					<div class="modal-content">
+						<h2>My first modal</h2>
+						<p>Testing how i do a modal</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-flat green">OK</button>
+					</div>
+				</div>
 
 				<div class="section">
 					<div class="container">
+						<button class="btn btn-large waves-effect waves-dark blue lighten-2">testee</button>
 						<h4>{{ title }}</h4>
 
 						<div class="row">
 							<div class="col s6">
 								<div class="card z-depth-2">
 									<div class="card-content">
-										<p class="card-title"></p>
-										<h3>teste</h3>
+										<p class="card-title">
+											<i class="material-icons">account_balance</i>
+										</p>
+										<h4 :class="{'gray' : status === false}">{{ status | generalStatus }}</h4>
 									</div>
 								</div>
 							</div>
-							<div class="col s6"></div>
-						</div>
 
-						<h2 :class="{'gray' : status === false}">{{ status | generalStatus }}</h2>
-
-						<div class="row">
-							<div class="col s5 offset-s7">
-								<h3>R$ 3404,50</h3>
+							<div class="col s6">
+								<div class="card z-depth-2">
+									<div class="card-content">
+										<p class="card-title">
+											<i class="material-icons">payment</i>
+										</p>
+										<h4>R$ 3404,50</h4>
+									</div>
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -74,15 +92,6 @@
 			</div>
 
 			<div class="container">
-
-				<div class="row">
-					<div class="col s6">
-						Laravel com Vuejs
-					</div>
-					<div class="col s6">
-						by Lucas Rodrigues
-					</div>
-				</div>
 
 				<div class="row">
 
@@ -110,7 +119,7 @@
 									<td>{{ o.date_due }}</td>
 									<td>{{ o.name }}</td>
 									<td>{{ o.value | currency 'R$' 2 }}</td>
-									<td :class="{'pago' : o.done, 'nao-pago' : !o.done}">
+									<td class="white-text" :class="{'green lighten-2' : o.done, 'red lighten-2' : !o.done}">
 										<input type="checkbox" :checked="o.done" v-model="o.done" />
 									</td>
 									<td>
@@ -131,37 +140,40 @@
 						<div class="container">
 
 							<div class="row">
-
+								<h3>Nova Conta</h3>
 								<form name="frmIncConta" :submit.prevent="submit">
 
 									<div class="row">
 										<div class="input-field col s6">
-											<label>Vencimento da Conta</label>
-											<input type="text" v-model="bill.date_due"/>
+											<label class="active">Vencimento da Conta</label>
+											<input type="date" v-model="bill.date_due"/>
 										</div>
 
 										<div class="input-field col s6">
-											<label>Valor da Conta</label>
-											<input type="text" v-model="bill.value"/>
+											<label class="active">Valor da Conta</label>
+											<input type="number" v-model="bill.value"/>
 										</div>
 									</div>
 
 									<div class="row">
-										<div class="col s12">
-											<label>Nome da Conta:</label>
+										<div class="input-field col s6">
+											<label class="active">Nome da Conta:</label>
 											<select v-model="bill.name" id="name" class="browser-default">
 												<option value="" disabled selected>Selecione uma opção</option>
 												<option v-for="o in names" :value="o">{{ o }}</option>
 											</select>
 										</div>
-									</div>
 
+										<div class="input-field col s6">
+											<input type="checkbox" v-model="bill.done" id="chkPago"/>
+											<label for="chkPago">Pago?</label>
+										</div>
+									</div>
 									<div class="row">
-										<input type="checkbox" v-model="bill.done" id="chkPago"/>
-										<label for="chkPago">Pago?</label>
+										<div class="input-field col s12">
+											<input type="submit" value="Adicionar conta" class="btn btn-large"/>
+										</div>
 									</div>
-
-									<input type="submit" value="Adicionar conta"/>
 								</form>
 
 							</div>

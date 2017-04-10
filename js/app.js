@@ -146,4 +146,6 @@
     $(document).ready(function () {
         $('.button-collapse').sideNav();
         $('#interminate').material_select();
+        $('#btnModal').modal();
+        //$('#btnModal').modal('open');
     });

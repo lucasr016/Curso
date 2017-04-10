@@ -7,9 +7,15 @@
     "materialize-css": "^0.98.0",
     "vue": "^1.0.28"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "CHOKIDAR_USEPOLLING=true babel src --out-dir dist --watch",
+    "sass": "node-sass ./sass -o ./css",
+    "sass:w": "node-sass ./sass -o ./css -w",
+    "start": "concurrently \"npm run babel\" \"npm run sass\" \"npm run sass:w\" \"gulp\" \"lite-server\""
   },
   "author": "Lucas Rodrigues",
   "license": "ISC"
